@@ -29,4 +29,4 @@ while True:
                     print(item["text"])
     except Exception as e:
         print(e);
-    time.sleep(30.0 - ((time.time() - starttime) % 30.0))
+    time.sleep(60.0 - ((time.time() - starttime) % 60.0))
