@@ -16,4 +16,17 @@ except Exception as e:
     print(e);
 
 while True:
-    time.sleep(1.0 - ((time.time() - starttime) % 1.0))
+    try:
+        r = api.request('statuses/home_timeline', {'count':5})
+        for item in r.get_iterator():
+            if 'text' in item:
+                if item["text"] in tweets:
+                    for x in tweets:
+                        print(x);
+                else:
+                    tweets.pop(0);
+                    tweets.append(item["text"]);
+                    print(item["text"])
+    except Exception as e:
+        print(e);
+    time.sleep(30.0 - ((time.time() - starttime) % 30.0))
