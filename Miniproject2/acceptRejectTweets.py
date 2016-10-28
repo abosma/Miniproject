@@ -1,8 +1,8 @@
 from TwitterAPI import TwitterAPI
+import time
+
 api = TwitterAPI("tdErmVotisBBi0qgClWPvC2zD", "UUNAAxEqqHbBgWOLKG6ZoWvZj1fcYuDZrc7VrmaMqJnfKiY7s5", "791235928564039680-e1gd5nWxWkObyGM5V9wMhqp6AmgCOJF", "b6Ha49AWq3KPAASIxQUbqn83OtE4KVOOcnJhp3gsIPcUL")
 
-
-import time
 def follow(thefile):
     thefile.seek(0,2)
     while True:
@@ -34,5 +34,5 @@ if __name__ == '__main__':
                 else:
                     print("Geen accept of reject gedecteerd, probeer het nog eens.")
             except ValueError:
-                print("Geen nummers of tekens aub");
+                print("Geen nummers of tekens aub.");
                 continue
