@@ -16,7 +16,6 @@ if __name__ == '__main__':
     logfile = open("C:/Users/User/Documents/Visual Studio 2015/Projects/Miniproject2/Miniproject2/Tweets.txt","r")
     loglines = follow(logfile)
     for line in loglines:
-        print(line)
         while True:
             a = input("Accept of Reject: ")
             try:
