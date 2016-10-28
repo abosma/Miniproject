@@ -13,7 +13,7 @@ def follow(thefile):
         yield line
 
 if __name__ == '__main__':
-    logfile = open("D:/GithubProjects/atillabosma/Miniproject/Miniproject2/Tweets.txt","r")
+    logfile = open("C:/Users/User/Documents/Visual Studio 2015/Projects/Miniproject2/Miniproject2/Tweets.txt","r")
     loglines = follow(logfile)
     for line in loglines:
         print(line)
@@ -26,6 +26,10 @@ if __name__ == '__main__':
                     print("Tweet gepost: " + line);
                     break;
                 if a == "Reject":
+                    line = line.replace("\n", "");
+                    f = open("Log.txt", "a");
+                    f.write(line + " : " + time.strftime("%a %d %b %Y, %T \n"));
+                    f.close();
                     break;
                 else:
                     print("Geen accept of reject gedecteerd, probeer het nog eens.")
