@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 root = Tk()
 filename = None
 
@@ -6,10 +7,9 @@ def Tweet():
     global filename
     tweet =  text.get(0.0, END)    # read tweet
     if (len(tweet) > 140):
-        tkinter.messagebox.showinfo('Error', "Meer dan 140 characters ingevoerd, typ minder dan 140 characters in.")
-        print("Meer dan 140 characters ingevoerd, typ minder dan 140 characters in."); # moet popup wroden
+        messagebox.showerror('Error', "Meer dan 140 characters ingevoerd, typ minder dan 140 characters in.")
     elif (len(tweet) <= 0):
-        print("Geen text ingevoerd, typ AUB iets in"); # moet popup wroden
+        messagebox.showerror('Error', "Geen text ingevoerd, typ AUB iets in.")
     else:
         f = open("Tweets.txt", "a");
         f.write(tweet + "\n");
