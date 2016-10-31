@@ -47,7 +47,7 @@ if __name__ == '__main__':
             try:
                 if a == "Accept":   #accept the tweet
                     a = str(a);
-                    r = api.request('statuses/update', {'status':line})
+                    r = api.request('statuses/update', {'status':line})  #post line
                     print("Tweet gepost: " + line);
                     break;
                 if a == "Reject":  #reject the tweet
