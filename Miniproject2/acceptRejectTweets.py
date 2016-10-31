@@ -1,15 +1,13 @@
 #imports
 from TwitterAPI import TwitterAPI
-import time
 from tkinter import *
-
-root = Tk() #GUI   #log erbij if time premits
+import time
+import threading
 
 api = TwitterAPI("qaDlX0kYOQ99OhOrFHDc9li07", "cLhI4Oe8D6grpDhns1udDaIxfp3SNMqECVOvHZU27mrFTR1to0", "791235928564039680-960nSheLDOtSIKiK7wwV0C7dsjQfTRb", "HZn6PJ8VyHNpuNzrx3xP4YyHJdcubqLwwqOAy8f4ji0H7")
 
-global tweetStatus;
-
-tweetStatus = "Not doing anything..."
+tweetString = "Aan het wachten op een tweet...";
+tweetStatusString = "Momenteel niks aan het doen...";
 
 def follow(file):
     file.seek(0,2)
@@ -20,48 +18,76 @@ def follow(file):
             continue
         yield line
 
-def acceptTweet(lineTweet):
-    r = api.request('statuses/update', {'status':lineTweet})
-    tweetStatus = "Tweet gepost: " + lineTweet;
+def setTweet(line):
+    global tweetString;
+    tweetString = line;
 
-def rejectTweet(lineTweet):
-    lineTweet = lineTweet.replace("\n", "");
-    f = open("Log.txt", "a");
-    f.write(lineTweet + " : " + time.strftime("%a %d %b %Y, %T \n"));
-    f.close();
-    tweetStatus = "Tweet opgeslagen in de log";
-
-
-if __name__ == '__main__':
-    logfile = open("C:/Users/User/Documents/Visual Studio 2015/Projects/Miniproject2/Miniproject2/Tweets.txt","r")
+def logFiles():
+    logfile = open("D:/GithubProjects/atillabosma/Miniproject/Miniproject2/Tweets.txt","r")
     loglines = follow(logfile)
     for line in loglines:
         while True:
-            thelabel = Label(root, text=line)
-            topFrame = Frame(root)
-            bottomFrame = Frame(root)
+            setTweet(line);
+            break;
 
-            #buttons
-            button1 = Button(text="Accept", fg="green", command=acceptTweet(line))  #button Accept
-            button2 = Button(text="Reject", fg="red", command=rejectTweet(line))  #button REject
+def acceptTweet():
+    r = api.request('statuses/update', {'status':tweetString})
+    print(r.status_code);
 
-            #icons
-            twitter =  PhotoImage(file="twitter.png")
-            label = Label(root, image=twitter)
+def rejectTweet():
+    logString = tweetString;
+    logString = logString.replace("\n", "");
+    f = open("Log.txt", "a");
+    f.write(logString + " : " + time.strftime("%a %d %b %Y, %T \n"));
+    f.close();
 
-            #********** Status Bar *************
+def startGUI():
+    root = Tk() #GUI   #log erbij if time premits
 
-            status = Label(root, text=tweetStatus,bd=1, relief=SUNKEN, anchor=W)
+    #icons
+    twitter =  PhotoImage(file="twitter.png")
+    label = Label(root, image=twitter)
 
-            #packs
-            thelabel.pack()
-            topFrame.pack()
-            bottomFrame.pack(side=BOTTOM)
-            status.pack(side=BOTTOM, fill=X)
-            button1.pack(side=LEFT)
-            button2.pack(side=LEFT)
+    #********** Status Bar *************
+    tweetStatus = StringVar();
+    tweetStatus.set(tweetStatusString);
 
-            root.mainloop() #Main
+    tweet = StringVar();
+    tweet.set(tweetString);
+
+    status = Label(root, textvariable=tweetStatus,bd=1, relief=SUNKEN, anchor=W)
+
+    topFrame = Frame(root)
+    bottomFrame = Frame(root)
+
+    #packs
+    topFrame.pack()
+    bottomFrame.pack(side=BOTTOM)
+    status.pack(side=BOTTOM, fill=X)
+
+    thelabel = Label(root, textvariable=tweet)
+    thelabel.pack()
+
+    #buttons
+    button1 = Button(text="Accept", fg="green", command=lambda:acceptTweet())  #button Accept
+    button2 = Button(text="Reject", fg="red", command=lambda:rejectTweet())  #button REject
+
+    button1.pack()
+    button2.pack()
+
+    def checkChanges():
+        tweetStatus.set(tweetStatusString);
+        tweet.set(tweetString);
+        root.after(5000,checkChanges)
+            
+    root.after(5000,checkChanges)
+    root.mainloop();
+
+fileThread = threading.Thread(name='fileLogThread', target=logFiles)
+guiThread = threading.Thread(name='guiStartThread', target=startGUI)
+
+fileThread.start()
+guiThread.start()
 
 
 
