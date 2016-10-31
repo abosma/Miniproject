@@ -12,33 +12,7 @@ def follow(file):
             continue
         yield line
 
-<<<<<<< HEAD
-if __name__ == '__main__':
-    logfile = open("C:/Users/Wenfrie/PycharmProjects/Miniproject/Miniproject2/Tweets.txt","r") #path
-    loglines = follow(logfile)
-    for line in loglines:
-        while True:
-            print(line);
 
-            a = input("Accept of Reject: ")
-            try:
-                if a == "Accept":   #accept the tweet
-                    a = str(a);
-                    r = api.request('statuses/update', {'status':line})  #post line
-                    print("Tweet gepost: " + line);
-                    break;
-                if a == "Reject":  #reject the tweet
-                    line = line.replace("\n", "");
-                    f = open("Log.txt", "a");
-                    f.write(line + " : " + time.strftime("%a %d %b %Y, %T \n"));   #weekday ,day of the month , month shortened , year, time(0:00:00)
-                    f.close();
-                    break;
-                else:
-                    print("Geen accept of reject gedecteerd, probeer het nog eens.")
-            except ValueError:
-                print("Geen nummers of tekens aub.");
-                continue
-=======
 def acceptReject():
     if a == "Accept":
         a = str(a);
