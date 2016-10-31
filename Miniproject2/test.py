@@ -14,15 +14,25 @@ topFrame = Frame(root)
 bottomFrame = Frame(root)
 
 #buttons
-button1 = Button(bottomFrame, text="Accept", fg="green", command=testbutton1)  #button Accept
-button2 = Button(bottomFrame, text="Reject", fg="red", command=testbutton2)  #button REject
+button1 = Button(text="Accept", fg="green", command=testbutton1)  #button Accept
+button2 = Button(text="Reject", fg="red", command=testbutton2)  #button REject
+
+#icons
+twitter =  PhotoImage(file="twitter.png")
+label = Label(root, image=twitter)
+
+#********** Status Bar *************
+
+status = Label(root, text="Preparing to do nothing...",bd=1, relief=SUNKEN, anchor=W)
 
 #packs
 thelabel.pack()
 topFrame.pack()
+Label.pack()
 bottomFrame.pack(side=BOTTOM)
+status.pack(side=BOTTOM, fill=X)
 button1.pack(side=LEFT)
-button2.pack(side=RIGHT)
+button2.pack(side=LEFT)
 
 root.mainloop() #Main
 
