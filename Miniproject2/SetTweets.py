@@ -12,7 +12,8 @@ def Tweet():
         messagebox.showerror('Error', "Geen text ingevoerd, typ AUB iets in.") # error if no text input
     else:
         f = open("Tweets.txt", "a"); # edits file
-        f.write(tweet + "\n"); # writest the file
+        tweet = tweet.replace("\n", "");
+        f.write(tweet); # writest the file
         text.delete(0.0, END) #ereases text so it resets
         f.close(); # end of line
 

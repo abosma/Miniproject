@@ -22,6 +22,10 @@ def setTweet(line):
     global tweetString;
     tweetString = line;
 
+def setStatus(status):
+    global tweetStatusString;
+    tweetStatusString = status;
+
 def logFiles():
     logfile = open("D:/GithubProjects/atillabosma/Miniproject/Miniproject2/Tweets.txt","r")
     loglines = follow(logfile)
@@ -33,6 +37,7 @@ def logFiles():
 def acceptTweet():
     r = api.request('statuses/update', {'status':tweetString})
     print(r.status_code);
+    setStatus("Tweet gepost op twitter.");
 
 def rejectTweet():
     logString = tweetString;
@@ -40,6 +45,7 @@ def rejectTweet():
     f = open("Log.txt", "a");
     f.write(logString + " : " + time.strftime("%a %d %b %Y, %T \n"));
     f.close();
+    setStatus("Tweet in de log gezet.");
 
 def startGUI():
     root = Tk() #GUI   #log erbij if time premits
@@ -78,9 +84,9 @@ def startGUI():
     def checkChanges():
         tweetStatus.set(tweetStatusString);
         tweet.set(tweetString);
-        root.after(5000,checkChanges)
+        root.after(2000,checkChanges)
             
-    root.after(5000,checkChanges)
+    root.after(2000,checkChanges)
     root.mainloop();
 
 fileThread = threading.Thread(name='fileLogThread', target=logFiles)
