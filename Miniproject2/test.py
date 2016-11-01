@@ -1,10 +1,15 @@
 from tkinter import *
+
+f = open("Tweets.txt", "a");  # edits file
+tweet = tweet.replace("\n", "");
+f.write(tweet);  # writest the file
+text.delete(0.0, END)  # ereases text so it resets
+f.close();  # end of line
+
+
 root = Tk() #GUI   #log erbij if time premits
 
-def testbutton1():
-    print("ACCEPTED YAY.")
-def testbutton2():
-    print("REJECTED AWHH...")
+root.title("DisplayTweetsAndWeather")  # GUI NAME
 
 #Labels
 thelabel = Label(root, text="tweet")  #teskst
@@ -14,25 +19,19 @@ topFrame = Frame(root)
 bottomFrame = Frame(root)
 
 #buttons
-button1 = Button(text="Accept", fg="green", command=testbutton1)  #button Accept
-button2 = Button(text="Reject", fg="red", command=testbutton2)  #button REject
+
+
+
 
 #icons
-twitter =  PhotoImage(file="twitter.png")
-label = Label(root, image=twitter)
 
 #********** Status Bar *************
 
-status = Label(root, text="Preparing to do nothing...",bd=1, relief=SUNKEN, anchor=W)
-
 #packs
 thelabel.pack()
+
 topFrame.pack()
-Label.pack()
 bottomFrame.pack(side=BOTTOM)
-status.pack(side=BOTTOM, fill=X)
-button1.pack(side=LEFT)
-button2.pack(side=LEFT)
 
 root.mainloop() #Main
 

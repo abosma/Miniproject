@@ -6,31 +6,31 @@ api = TwitterAPI("tdErmVotisBBi0qgClWPvC2zD", "UUNAAxEqqHbBgWOLKG6ZoWvZj1fcYuDZr
 owm = pyowm.OWM("a40051c6d53e900889105abcdc376832")
 tweets = [];
 
-starttime = time.time()
+starttime = time.time()   #start clock
 
 while True:
     try:
-        r = api.request('statuses/home_timeline', {'count':5})
+        r = api.request('statuses/home_timeline', {'count':5})    #api reqeust take from twitter last 5 tweets (json file)
         print(r.status_code);
-        for item in r.get_iterator():
-            if 'text' in item:
-                if len(tweets) < 5:
-                    tweets.append(item["text"])
-                    print(item["text"]);
-                else:
-                    if item["text"] in tweets:
-                        observation = owm.weather_at_place("Utrecht,NL")
+        for item in r.get_iterator():      # per tweet doe X
+            if 'text' in item:                  # Als een variable 'text' text dan kijkt hij naar de lengte van de lijst 5
+                if len(tweets) < 5:                         # check if 5-
+                    tweets.append(item["text"])                 # put tweets in list
+                    print(item["text"]);                #print list
+                else:                   # if ==5
+                    if item["text"] in tweets:               #if tweet been here before
+                        observation = owm.weather_at_place("Utrecht,NL") #show weather
                         w = observation.get_weather()
                         weatherCelcius = w.get_temperature('celsius')
                         weatherWindsnelheid = w.get_wind()
                         print("Tempratuur in Utrecht   : °C " + str(weatherCelcius.get("temp")))
                         print("Windsnelheid in Utrecht : " + str(weatherWindsnelheid.get("speed")) + " " + str(weatherWindsnelheid("deg") + "°"))
                     else:
-                        tweets.pop(0);
-                        tweets.append(item["text"])
+                        tweets.pop(0);                  #if tweets is not in list before then remove first tweet
+                        tweets.append(item["text"])         #add new tweet
                         for tweet in tweets:
-                            print(tweet);
+                            print(tweet);                   #print all tweets
     except Exception as e:
-        print(e);
+        print(e);                   #erorr handling
 
-    time.sleep(60.0 - ((time.time() - starttime) % 60.0))
+    time.sleep(60.0 - ((time.time() - starttime) % 60.0))  # wait 60s or else we get blocked max 15 reqeusts per 15 mins
