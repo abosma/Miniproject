@@ -32,7 +32,7 @@ def setButtonState(status):
     buttonState = status;
 
 def logFiles():
-    logfile = open("C:/Users/User/documents/visual studio 2015/Projects/Miniproject2/Miniproject2/Tweets.txt","r")
+    logfile = open("C:/Users/Wenfrie/PycharmProjects/Miniproject/Miniproject2/Tweets.txt","r")
     loglines = follow(logfile)
     for line in loglines:
         while True:
