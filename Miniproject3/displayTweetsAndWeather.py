@@ -22,9 +22,13 @@ def setTweetList(tweet):
     global tweetList
     tweetList.append(tweet)
 
-def setTweetString(tweetlist):
+def convertTweetList(tweetlist):
     global tweetString
     tweetString = "\n".join(tweetlist);
+
+def setTweetString(string):
+    global tweetString
+    tweetString = string
 
 def setTemp(temp):
     global tempratuur;
@@ -63,7 +67,14 @@ def guiStart():
 
 
     def checkChanges():
-        setTweetString(tweetList);
+
+        if(len(tweetList) != 0 & len(tempratuur) == 0):
+            convertTweetList(tweetList);
+        else:
+            setTweetString("Tempratuur in Utrecht   : °C " + tempratuur + "\n"
+                           + "Windsnelheid in Utrecht : " + windspeed
+                           + windangle +  + "°")
+
         labelString.set(tweetString);
         root.after(2000, checkChanges)
 
@@ -81,20 +92,19 @@ def getTweets():
                 if 'text' in item:  # Als een variable 'text' text dan kijkt hij naar de lengte van de lijst 5
                     if len(tweetList) < 5:  # check if 5-
                         setTweetList(item["text"])  # put tweets in list
-                        print(tweetList);  # print list
                     else:  # if ==5
                         if item["text"] in tweetList:  # if tweet been here before
                             observation = owm.weather_at_place("Utrecht,NL")  # show weather
                             w = observation.get_weather()
                             weatherCelcius = w.get_temperature('celsius')
                             weatherWindsnelheid = w.get_wind()
-                            print("Tempratuur in Utrecht   : °C " + str(weatherCelcius.get("temp")))
-                            print("Windsnelheid in Utrecht : " + str(weatherWindsnelheid.get("speed")) + " " + str(weatherWindsnelheid("deg") + "°"))
+                            print(weatherCelcius.get("temp"))
+                            print(weatherWindsnelheid("speed"))
+                            print(weatherWindsnelheid("deg"))
                         else:
                             tweetList.pop(0);  # if tweets is not in list before then remove first tweet
-                            tweetList.append(item["text"])  # add new tweet
-                            for tweet in tweetList:
-                                print(tweet);  # print all tweets
+                            setTweetList(item["text"])  # add new tweet
+                            setTemp("");
         except Exception as e:
             print(e);  # erorr handling
 
