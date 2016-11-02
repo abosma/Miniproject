@@ -47,7 +47,8 @@ def guiStart():
     root = Tk()  # GUI   #log erbij if time premits
 
     root.title("DisplayTweetsAndWeather")  # GUI NAME
-
+    root.minsize(width=400, height=60)
+    root.maxsize(width=2000, height=400)
     labelString = StringVar();
     labelString.set(tweetString);
 
@@ -59,11 +60,15 @@ def guiStart():
     topFrame = Frame(root)
     bottomFrame = Frame(root)
 
-    # packs
-    thelabel.pack()
+    #images
+    photo = PhotoImage(file="ns.png")
+    image =  Label(image=photo,)
 
+    # packs
+    thelabel.pack(fill=X,side=BOTTOM)
     topFrame.pack()
     bottomFrame.pack(side=BOTTOM)
+    image.pack(side=LEFT, fill='both', expand='yes')
 
 
     def checkChanges():
