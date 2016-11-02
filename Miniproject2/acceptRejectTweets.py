@@ -55,7 +55,6 @@ def rejectTweet():
         return
     else:
         logString = tweetString;
-        logString = logString.replace("", "\n");
         f = open("Log.txt", "a");
         f.write(logString + " : " + time.strftime("%a %d %b %Y, %T \n"));
         f.close();
