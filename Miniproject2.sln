@@ -3,11 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Miniproject2", "Miniproject2\Miniproject2.pyproj", "{13F7DF33-8499-481C-80B2-7919BA2173CA}"
-EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Miniproject", "Miniproject2\Miniproject.pyproj", "{BEB4EDD9-53A7-41E4-A3CD-28996F564ADA}"
-EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Miniproject3", "Miniproject3\Miniproject3.pyproj", "{43146D67-8A92-48F8-B1A1-065743DD8D83}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,12 +11,8 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{13F7DF33-8499-481C-80B2-7919BA2173CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{13F7DF33-8499-481C-80B2-7919BA2173CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEB4EDD9-53A7-41E4-A3CD-28996F564ADA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BEB4EDD9-53A7-41E4-A3CD-28996F564ADA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{43146D67-8A92-48F8-B1A1-065743DD8D83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{43146D67-8A92-48F8-B1A1-065743DD8D83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

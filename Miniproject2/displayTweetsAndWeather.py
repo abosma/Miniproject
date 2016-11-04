@@ -117,9 +117,3 @@ def getTweets():
             print(e);  # erorr handling
 
         time.sleep(60.0 - ((time.time() - starttime) % 60.0))  # wait 60s or else we get blocked max 15 reqeusts per 15 mins
-
-getTweetsThread = threading.Thread(name='getTweetsThread', target=getTweets)
-guiThread = threading.Thread(name='guiStartThread', target=guiStart)
-
-getTweetsThread.start()
-guiThread.start()

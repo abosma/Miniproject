@@ -32,7 +32,7 @@ def setButtonState(status):
     buttonState = status;
 
 def logFiles():
-    logfile = open("D:/GithubProjects/atillabosma/Miniproject/Miniproject2/Tweets.txt","r")
+    logfile = open("Tweets.txt","r")
     loglines = follow(logfile)
     for line in loglines:
         while True:
@@ -69,9 +69,6 @@ def startGUI():
     root.minsize(width=400,height=150);
     root.maxsize(width=2000,height=150);
 
-    #icons
-    twitter =  PhotoImage(file="twitter.png")
-    label = Label(root, image=twitter)
 
     #********** Status Bar *************
     tweetStatus = StringVar();
@@ -120,12 +117,6 @@ def startGUI():
             
     root.after(2000,checkChanges)
     root.mainloop();
-
-fileThread = threading.Thread(name='fileLogThread', target=logFiles)
-guiThread = threading.Thread(name='guiStartThread', target=startGUI)
-
-fileThread.start()
-guiThread.start()
 
 
 

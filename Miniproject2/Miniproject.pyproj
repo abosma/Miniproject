@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>beb4edd9-53a7-41e4-a3cd-28996f564ada</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>SetTweets.py</StartupFile>
+    <StartupFile>main.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,9 +22,16 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="Log.txt" />
+    <Content Include="ns.png" />
     <Content Include="Tweets.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="acceptRejectTweets.py" />
+    <Compile Include="displayTweetsAndWeather.py" />
+    <Compile Include="main.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="SetTweets.py">
       <SubType>Code</SubType>
     </Compile>
