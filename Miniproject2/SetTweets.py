@@ -38,3 +38,8 @@ def tweetGUI():
 
 
     root.mainloop()  # the window is now displayed
+
+setTweetsThread = threading.Thread(name='setTweetsThread', target=tweetGUI)
+
+def startThreads():
+    setTweetsThread.start()

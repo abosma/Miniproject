@@ -32,7 +32,7 @@ def setButtonState(status):
     buttonState = status;
 
 def logFiles():
-    logfile = open("Tweets.txt","r")
+    logfile = open("C:/Users/User/Documents/Visual Studio 2015/Projects/Miniproject2/Miniproject2/Tweets.txt","r")
     loglines = follow(logfile)
     for line in loglines:
         while True:
@@ -117,6 +117,13 @@ def startGUI():
             
     root.after(2000,checkChanges)
     root.mainloop();
+
+guiThread = threading.Thread(name='guiStartThread', target=startGUI)
+fileThread = threading.Thread(name='fileLogThread', target=logFiles)
+
+def startThreads():
+    guiThread.start()
+    fileThread.start()
 
 
 

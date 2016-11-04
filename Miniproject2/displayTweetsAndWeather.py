@@ -117,3 +117,10 @@ def getTweets():
             print(e);  # erorr handling
 
         time.sleep(60.0 - ((time.time() - starttime) % 60.0))  # wait 60s or else we get blocked max 15 reqeusts per 15 mins
+
+guiTweetWeatherThread = threading.Thread(name='guiTweetWeatherThread', target=guiStart)
+getTweetsThread = threading.Thread(name='getTweetsThread', target=getTweets)
+
+def startThreads():
+    guiTweetWeatherThread.start()
+    getTweetsThread.start()
